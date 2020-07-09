@@ -11,6 +11,7 @@ class Captcha
     private static $fontSize = 30;              //验证码字体大小
     private static $fontAngleMin = -30;         //验证码字体旋转最小角度
     private static $fontAngleMax = 30;          //验证码字体旋转最大角度
+    private static $fontColorWeight = 0.3;      //验证码字体颜色和其他（干扰线等）颜色的深度比例
     private $text = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ1234567890';
     private $code = '';                         //生成的验证码
 
@@ -172,9 +173,9 @@ class Captcha
             case 0:
                 return imagecolorallocate(
                     $this->res,
-                    mt_rand(self::$redColorMin, intval(self::$redColorMax * 0.3)),
-                    mt_rand(self::$greenColorMin, intval(self::$greenColorMax * 0.3)),
-                    mt_rand(self::$blueColorMin, intval(self::$blueColorMax * 0.3))
+                    mt_rand(self::$redColorMin, intval(self::$redColorMax * self::$fontColorWeight)),
+                    mt_rand(self::$greenColorMin, intval(self::$greenColorMax * self::$fontColorWeight)),
+                    mt_rand(self::$blueColorMin, intval(self::$blueColorMax * self::$fontColorWeight))
                 );
             case 1:
                 return imagecolorallocate(
